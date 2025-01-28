@@ -10,26 +10,46 @@ class GameManager
 	sf::RenderWindow* m_window;
 	sf::Event m_event;
 	sf::VideoMode m_videomode;
-	
-	bool paused;
+	sf::RectangleShape m_player_hp_bar;
+	sf::RectangleShape m_player_hp_bar_back;
+	bool m_paused;
+	float m_key_time_max;
+	float KeyTime;
 public:
+	void InitWindow();
+	void InitVariable();
+	void InitGameManager();
+	void InitPlayer();
+	void PauseState();
+	void UnPauseState();
 	GameManager();
+
+	~GameManager();
+
+	Player GetPlayer();
+
 	static GameManager* GetInstance();
 
-	void InitWindow();
-	void InitTimer();
-	sf::Texture* GetTexture(std::string id);
-	Player GetPlayer();
-	void Run();
-	void Update();
-	void Draw(sf::RenderTarget& target, sf::RenderStates states);
+	sf::RenderWindow* GetWindow();
 
-	void setPlayer(Player* player);
-	void setSceneManager(SceneManager* scenemanager);
-	void setWindow(sf::RenderWindow* window);
-	void setVideoMode(sf::VideoMode videomode);
-	void setEvent(sf::Event event);
-	void setPaused(bool paused);
-	void setTexture(std::string id, std::string path);
+	void UpdateInput();
+
+	void Run();
+
+	void UpdatePlayerInput(float dt);
+
+	void poolEvent();
+
+	void UpdateKeyTime(float dt);
+
+	SceneManager* GetSceneManager();
+
+	void UpdateGuI();
+
+	bool GetKetTime();
+
+	sf::Texture* GetTexture(std::string id);
+
+	void render();
 };
 
