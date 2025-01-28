@@ -1,6 +1,7 @@
 #pragma once
 #include "../Obj/Player.h"
 #include "SceneManager.h"
+#include "../Obj/Player.h"
 #include "SFML/Graphics.hpp"
 
 class GameManager
@@ -18,6 +19,8 @@ public:
 	static GameManager* GetInstance();
 
 	void InitGameManager();
+
+	Player* GetPlayer();
 
 	void Draw();
 

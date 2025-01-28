@@ -1,6 +1,10 @@
 #pragma once
-#include "../includes.h"
+#include <vector>
+#include "SFML/Graphics.hpp"
 #include "../Scenes/Scene.h"
+#include "../Obj/Entity.h"
+
+
 
 class SceneManager
 {
@@ -20,9 +24,4 @@ public:
 	T* Add();
 	template<class T>
 	std::vector<T*> getScenes();
-
-
 };
-
-
-

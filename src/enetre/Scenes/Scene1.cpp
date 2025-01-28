@@ -2,8 +2,9 @@
 #include "Scene1.h"
 #include "../includes.h"
 
-Scene1::Scene1()
+Scene1::Scene1() : Scene()
 {
+	Init();
 }
 
 void Scene1::addEntity(Entity* _entity)
@@ -13,35 +14,18 @@ void Scene1::addEntity(Entity* _entity)
 
 void Scene1::Init()
 {
-	Player* player = new Player();
-	player->Init();
-	addEntity(player);
+	Player* m_player = new Player(sf::Vector2f(0,0));
+	addEntity(m_player);
 
 }
 
-void Scene1::Update()
+void Scene1::Update(float _dt)
 {
 	for (Entity* entity : m_entities)
 	{
-		entity->Update();
+		entity->Update(_dt);
 	}
 
-}
-
-void Scene1::Render()
-{
-	for (Entity* entity : m_entities)
-	{
-		entity->Render();
-	}
-}
-
-void Scene1::Destroy()
-{
-	for (Entity* entity : m_entities)
-	{
-		entity->Destroy();
-	}
 }
 
 template<class T>

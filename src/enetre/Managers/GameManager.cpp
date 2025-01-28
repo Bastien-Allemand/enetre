@@ -14,6 +14,11 @@ void GameManager::InitGameManager()
 
 }
 
+Player* GameManager::GetPlayer()
+{
+	return m_player;
+}
+
 void GameManager::Draw()
 {
 }

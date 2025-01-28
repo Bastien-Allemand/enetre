@@ -6,9 +6,9 @@ T* Scene::GetEntity()
 {
 	for (int i = 0; i < m_entities.size(); i++)
 	{
-		if (T* s = dynamic_cast<T*>(m_entities[i])
+		if (T* s = dynamic_cast<T*>(m_entities[i]))
 		{
-			return s
+			return s;
 		}
 	}
 	return nullptr;

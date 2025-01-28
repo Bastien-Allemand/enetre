@@ -1,9 +1,13 @@
 #pragma once
+#include <vector>
 #include "../Obj/Entity.h"
+#include "SFML/Graphics.hpp"
+
+
 class Scene
 {
-	std::vector<Entity*> m_entities;
 public:
+	std::vector<Entity*> m_entities;
 	template<class T>
 	T* GetEntity();
 	template<class T>
@@ -12,8 +16,7 @@ public:
 	void removeEntitybytype();
 
 	virtual void Init() = 0;
-	virtual void Update() = 0;
+	virtual void Update(float _dt) = 0;
 	virtual void Render() = 0;
 	virtual void Destroy() = 0;
 };
-
