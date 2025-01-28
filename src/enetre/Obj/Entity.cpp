@@ -1,4 +1,5 @@
 #include "../pch.h"
+#include "SFML/Graphics.hpp"
 #include "Entity.h"
 
 Entity::Entity()
@@ -6,6 +7,7 @@ Entity::Entity()
 	damage = 0;
 	health = 0;
 
+	sf::Sprite m_sprite;
 
 }
 
