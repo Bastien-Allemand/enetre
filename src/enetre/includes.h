@@ -8,6 +8,7 @@
 #include "Managers/GameManager.h"
 #include "Obj/Entity.h"
 #include "Obj/Player.h"
+#include "../Scenes/Scene.h"
 
 
 
