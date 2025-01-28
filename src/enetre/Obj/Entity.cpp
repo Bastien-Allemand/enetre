@@ -2,31 +2,11 @@
 #include "SFML/Graphics.hpp"
 #include "Entity.h"
 
-Entity::Entity()
+Entity::Entity(sf::Vector2f _position,sf::Texture _texture)
 {
-	damage = 0;
-	health = 0;
-
-	sf::Sprite m_sprite;
-
+	m_sprite.setTexture(_texture);
+	m_sprite.setPosition(_position);
 }
 
-void Entity::Init()
-{
 
-}
 
-void Entity::Update()
-{
-
-}
-
-void Entity::Render()
-{
-
-}
-
-void Entity::Destroy()
-{
-
-}

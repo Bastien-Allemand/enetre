@@ -9,6 +9,7 @@ class SceneManager
 	int m_numberOfScenes;
 
 public:
+
 	SceneManager();
 	~SceneManager();
 	template<class T>

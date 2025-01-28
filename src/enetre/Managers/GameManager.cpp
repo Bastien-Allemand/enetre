@@ -2,57 +2,20 @@
 #include "GameManager.h"
 #include "../Obj/Player.h"
 #include "SceneManager.h"
+#include "SFML/Graphics.hpp"
 #include "../Scenes/Scene.h"
 #include "../Obj/Entity.h"
 
-void GameManager::InitWindow()
-{
-	m_videomode.height = 900;
-	m_videomode.width = 1600;
-	m_window = new sf::RenderWindow(m_videomode, "minimoys");
-}
-
-void GameManager::InitVariable()
-{
-	m_window = nullptr;
-	m_pause = false;
-	this->m_key_time_max = 100.f;
-	this->KeyTime = 0.f;
-}
 
 void GameManager::InitGameManager()
 {
-	this->InitVariable();
-	this->InitWindow();
-	this->InitPlayer();
+	m_videomode = sf::VideoMode(800, 600);
+	m_window = new sf::RenderWindow(m_videomode, "Game", sf::Style::Close | sf::Style::Titlebar);
 
-	this->m_scenemanager = new SceneManager();
-	mTextures["bullet"] = new sf::Texture;
-
-	BulletSprite(*mTextures["bullet"]);
-	this->m_player_hp_bar.setSize(sf::Vector2f(500, 30));
-	this->m_player_hp_bar.setFillColor(sf::Color::Red);
-
-	this->m_player_hp_bar.setPosition(sf::Vector2f(20, 20));
-	this->m_player_hp_bar_back = this->m_player_hp_bar;
-	this->m_player_hp_bar_back.setFillColor(sf::Color(25, 25, 25, 200));
 }
 
-void GameManager::InitPlayer()
+void GameManager::Draw()
 {
-
-	this->player = new Player(sf::Vector2f(300, 300), 20, 1, 5);
-	this->player->msprite.setScale(2.f, 2.f);
-}
-
-void GameManager::PauseState()
-{
-	this->m_paused = true;
-}
-
-void GameManager::UnPauseState()
-{
-	this->m_paused = false;
 }
 
 GameManager::GameManager()
@@ -62,59 +25,17 @@ GameManager::GameManager()
 
 GameManager::~GameManager()
 {
-	delete this->window;
-	delete this->player;
-}
-
-Player GameManager::GetPlayer()
-{
-	return*player;
+	delete this->m_window;
+	delete this->m_player;
 }
 
 GameManager* GameManager::GetInstance()
 {
-	if (mInstance == nullptr)
+	if (m_instance == nullptr)
 	{
-		mInstance = new GameManager();
+		m_instance = new GameManager();
 	}
-	return mInstance;
-}
-
-sf::RenderWindow* GameManager::GetWindow()
-{
-	return window;
-}
-
-void GameManager::UpdateBullet(float dt)
-{
-	for (int i = 0; i < this->player->bullets.size(); i++)
-	{
-		this->player->bullets[i]->update(dt);
-		if (this->player->bullets[i]->isOffScreen(*GetWindow()))
-		{
-			delete this->player->bullets[i];
-			this->player->bullets.erase(this->player->bullets.begin() + i);
-			--i;
-		}
-	}
-}
-
-void GameManager::UpdateInput()
-{
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) && this->GetKetTime())
-	{
-		if (!this->m_paused)
-		{
-			this->PauseState();
-			currentScene = this->mSceneManager->GetCurrentSceneIndice();
-			this->mSceneManager->ChangeScene(2);
-		}
-		else
-		{
-			this->UnPauseState();
-			this->mSceneManager->ChangeScene(currentScene);
-		}
-	}
+	return m_instance;
 }
 
 void GameManager::Run()
@@ -122,21 +43,10 @@ void GameManager::Run()
 	this->InitGameManager();
 	sf::Clock clock;
 
-	while (this->window->isOpen())
+	while (m_window->isOpen())
 	{
 
 		float dt = clock.restart().asSeconds();
-		poolEvent();
-		UpdateInput();
-		mSceneManager->GetCurrentScene()->update(dt);
-		UpdateGuI();
-		UpdateKeyTime(dt);
-		if (!this->m_paused)
-		{
-			UpdatePlayerInput(dt);
-
-			UpdateBullet(dt);
-		}
 
 		render();
 
@@ -145,7 +55,7 @@ void GameManager::Run()
 
 void GameManager::UpdatePlayerInput(float dt)
 {
-	if (this->mSceneManager->GetCurrentSceneIndice() > 0)
+	if (m_scenemanager.> 0)
 	{
 		player->update(dt);
 		float speed = 200.0f; // Augmenter la vitesse de déplacement

@@ -2,28 +2,14 @@
 #include "Player.h"
 #include "../includes.h"
 
-Player::Player() : Entity()
+Player::Player(sf::Vector2f _position, sf::Texture _texture) : Entity(_position, _texture)
 {
-	m_speed = 5;
-	attackSpeed = 0.5;
+	m_direction = sf::Vector2f(0, 0);
+	m_sprite.setScale(2.f, 2.f);
 }
 
-void Player::Init()
-{
-	m_position = sf::Vector2f(100, 100);
-	m_sprite.setPosition(m_position);
-	m_sprite.setTexture(*GameManager::GetInstance()->GetTexture("player"));
 
-}
-
-void Player::Update()
+void Player::Update(float deltaTime)
 {
-}
-
-void Player::Render()
-{
-}
-
-void Player::Destroy()
-{
+	m_sprite.move(m_direction*deltaTime);
 }

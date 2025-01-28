@@ -1,13 +1,15 @@
 #pragma once
-class Entity
+class Entity : public sf::Drawable
 {
-	float damage;
-	float health;
+	sf::Texture m_texture;
+
 public:
-	Entity();
-	virtual void Init();
-	virtual void Update();
-	virtual void Render();
-	virtual void Destroy();
+	sf::Sprite m_sprite;
+
+	Entity(sf::Vector2f _position, sf::Texture _texture);
+	
+	virtual void Draw(sf::RenderTarget& target, sf::RenderStates states) const = 0;
+	virtual void Update(float deltaTime) = 0;
+	virtual void Destroy() = 0;
 };
 
