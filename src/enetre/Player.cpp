@@ -105,7 +105,7 @@ void Player::TakeDammage(int dmg)
 	mhealth -= dmg;
 	if (!IsAlive())
 	{
-""		GameManager::GetInstance()->GetSceneManager()->ChangeScene(1);
+		GameManager::GetInstance()->GetSceneManager()->ChangeScene(1);
 	}
 }
 
