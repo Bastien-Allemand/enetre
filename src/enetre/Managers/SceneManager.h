@@ -1,6 +1,6 @@
 #pragma once
 #include "../includes.h"
-
+#include "../Scenes/Scene.h"
 
 class SceneManager
 {

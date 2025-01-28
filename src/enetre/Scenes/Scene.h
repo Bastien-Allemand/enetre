@@ -1,6 +1,5 @@
 #pragma once
-#include "../includes.h"
-
+#include "../Obj/Entity.h"
 class Scene
 {
 	std::vector<Entity*> m_entities;
@@ -9,6 +8,8 @@ public:
 	T* GetEntity();
 	template<class T>
 	void AddEntity();
+	template<class T>
+	void removeEntitybytype();
 
 	virtual void Init() = 0;
 	virtual void Update() = 0;

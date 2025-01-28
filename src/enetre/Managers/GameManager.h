@@ -1,14 +1,16 @@
 #pragma once
-#include "../includes.h"
+#include "../Obj/Player.h"
+#include "SceneManager.h"
+#include "SFML/Graphics.hpp"
 
-class GameManager : public sf::Drawable, public sf::Transformable
+class GameManager
 {
 	Player* m_player;
 	SceneManager* m_scenemanager;
 	sf::RenderWindow* m_window;
 	sf::Event m_event;
 	sf::VideoMode m_videomode;
-	sf::Texture* GetTexture(std::string id);
+	
 	bool paused;
 public:
 	GameManager();
@@ -16,7 +18,7 @@ public:
 
 	void InitWindow();
 	void InitTimer();
-
+	sf::Texture* GetTexture(std::string id);
 	Player GetPlayer();
 	void Run();
 	void Update();
@@ -29,8 +31,5 @@ public:
 	void setEvent(sf::Event event);
 	void setPaused(bool paused);
 	void setTexture(std::string id, std::string path);
-
-
-	
 };
 

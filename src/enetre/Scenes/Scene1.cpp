@@ -45,6 +45,20 @@ void Scene1::Destroy()
 }
 
 template<class T>
+std::vector<T*> Scene1::GetAllEntity()
+{
+	std::vector<T*> entities;
+	for (Entity* entity : m_entities)
+	{
+		if (T* s = dynamic_cast<T*>(entity))
+		{
+			entities.push_back(s);
+		}
+	}
+	return entities;
+}
+
+template<class T>
 inline void Scene1::removeEntitybytype()
 {
 	for (int i = 0; i < m_entities.size(); i++)
