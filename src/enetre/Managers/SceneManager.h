@@ -13,6 +13,8 @@ public:
 	SceneManager();
 	~SceneManager();
 	template<class T>
+	bool checkScene(T _scene);
+	template<class T>
 	T* Get();
 	template<class T>
 	T* Add();

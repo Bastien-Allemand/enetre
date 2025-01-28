@@ -15,6 +15,20 @@ SceneManager::~SceneManager()
 }
 
 template<class T>
+bool SceneManager::checkScene(T _scene)
+{
+	bool result = false;
+	for (int i = 0; i < m_numberOfScenes; i++)
+	{
+		if (_scene == m_scenes[i])
+		{
+			result = true;
+		}
+	}
+	return result;
+}
+
+template<class T>
 inline T* SceneManager::Get()
 {
 	for (Scene* scene : m_scenes)

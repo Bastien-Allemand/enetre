@@ -23,6 +23,7 @@ public:
 
 	void Run();
 
+	template<class T>
 	void UpdatePlayerInput(float dt);
 
 	void render();
